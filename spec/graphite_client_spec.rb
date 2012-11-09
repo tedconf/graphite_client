@@ -7,7 +7,7 @@ describe "GraphiteClient" do
     time = Time.now
     TCPSocket.should_receive(:new).with("host", 2003).and_return(socket = mock(:closed? => false))
     socket.should_receive(:write).with("hello.world 10.5 #{time.to_i}\n")
-    graphite = Graphite.new("host")
+    graphite = GraphiteClient.new("host")
     graphite.report("hello.world", 10.5, time)
   end
 
@@ -15,7 +15,7 @@ describe "GraphiteClient" do
     time = Time.now
     TCPSocket.should_receive(:new).once.with("host", 2003).and_return(socket = mock(:closed? => false))
     socket.should_receive(:write).twice
-    graphite = Graphite.new("host")
+    graphite = GraphiteClient.new("host")
     graphite.report("hello.world", 10.5, time)
     graphite.report("hello.world", 10, time)
   end
@@ -25,7 +25,7 @@ describe "GraphiteClient" do
     TCPSocket.should_receive(:new).twice.with("host", 2003).and_return(socket = mock(:closed? => false))
     socket.should_receive(:write)
     socket.should_receive(:write)
-    graphite = Graphite.new("host")
+    graphite = GraphiteClient.new("host")
     graphite.report("hello.world", 10.5, time)
     socket.stub!(:closed? => true)
     graphite.report("hello.world", 10, time)
@@ -38,14 +38,14 @@ describe "GraphiteClient" do
       TCPSocket.should_receive(:new).twice.with("host", 2003).and_return(socket = mock(:closed? => false))
       socket.should_receive(:write).and_raise(Errno::EPIPE)
       socket.should_receive(:write)
-      graphite = Graphite.new("host")
+      graphite = GraphiteClient.new("host")
       graphite.report("hello.world", 10.5, time)
       graphite.report("hello.world", 10, time)
     end
 
     it "should fail silently on Errno::EHOSTUNREACH" do
       TCPSocket.should_receive(:new).and_raise(Errno::EHOSTUNREACH)
-      graphite = Graphite.new("host")
+      graphite = GraphiteClient.new("host")
       -> {
         graphite.report("hello.world", 10.5, Time.now)
       }.should_not raise_error
@@ -53,7 +53,7 @@ describe "GraphiteClient" do
 
     it "should fail silently on Errno::ECONNREFUSED" do
       TCPSocket.should_receive(:new).and_raise(Errno::ECONNREFUSED)
-      graphite = Graphite.new("host")
+      graphite = GraphiteClient.new("host")
       -> {
         graphite.report("hello.world", 10.5, Time.now)
       }.should_not raise_error
@@ -66,7 +66,7 @@ describe "GraphiteClient" do
     TCPSocket.should_receive(:new).twice.with("host", 2003).and_return(socket = mock(:closed? => false))
     socket.should_receive(:write)
     socket.should_receive(:write)
-    graphite = Graphite.new("host")
+    graphite = GraphiteClient.new("host")
     graphite.report("hello.world", 10.5, time)
     socket.should_receive(:close)
     graphite.close_socket

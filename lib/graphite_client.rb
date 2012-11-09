@@ -1,6 +1,6 @@
 require 'socket'
 
-class Graphite
+class GraphiteClient
   def initialize(host)
     @host = host
   end
