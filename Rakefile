@@ -15,10 +15,10 @@ require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "graphite_client"
-  gem.homepage = "http://github.com/alexdean/graphite_client"
+  gem.homepage = "http://github.com/tedconf/graphite_client"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Very simple ruby client for graphite.}
+  gem.description = %Q{Original code by https://github.com/joakimk.}
   gem.email = "alex@crackpot.org"
   gem.authors = ["Alex Dean"]
   # dependencies defined in Gemfile
