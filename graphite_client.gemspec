@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "graphite_client"
-  s.version = "0.1.0"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alex Dean"]
@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
     "README.md",
     "Rakefile",
     "VERSION",
+    "graphite_client.gemspec",
     "lib/graphite_client.rb",
     "spec/graphite_client_spec.rb",
     "spec/spec_helper.rb"
