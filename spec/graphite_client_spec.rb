@@ -11,6 +11,14 @@ describe "GraphiteClient" do
     graphite.report("hello.world", 10.5, time)
   end
 
+  it "should accept an alternate port number" do
+    time = Time.now
+    TCPSocket.should_receive(:new).with("host", 2023).and_return(socket = mock(:closed? => false))
+    socket.should_receive(:write).with("hello.world 10.5 #{time.to_i}\n")
+    graphite = GraphiteClient.new("host:2023")
+    graphite.report("hello.world", 10.5, time)
+  end
+
   it "should reuse the same socket" do
     time = Time.now
     TCPSocket.should_receive(:new).once.with("host", 2003).and_return(socket = mock(:closed? => false))

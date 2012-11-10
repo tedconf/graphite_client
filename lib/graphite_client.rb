@@ -1,13 +1,16 @@
 require 'socket'
 
 class GraphiteClient
+  # "host" or "host:port"
   def initialize(host)
-    @host = host
+    @host, @port = host.split ':'
+    @port = 2003 if ! @port
+    @port = @port.to_i
   end
 
   def socket
     return @socket if @socket && !@socket.closed?
-    @socket = TCPSocket.new(@host, 2003)
+    @socket = TCPSocket.new(@host, @port)
   end
 
   def report(key, value, time = Time.now)
