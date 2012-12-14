@@ -18,16 +18,10 @@ class GraphiteClient
       end
     end
 
-    def report(event)
-      @req.body = EventValue.from(event)
+    def report(event={})
+      event[:tags] = Array(event[:tags]).join(',')
+      @req.body = event.to_json
       @http.request(@req)
-    end
-
-    class EventValue
-      def self.from(event={})
-        event[:tags] = Array(event[:tags]).join(',')
-        event.to_json
-      end
     end
   end
 end
