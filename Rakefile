@@ -20,7 +20,8 @@ Jeweler::Tasks.new do |gem|
   gem.summary = %Q{Very simple ruby client for graphite.}
   gem.description = %Q{Original code by https://github.com/joakimk.}
   gem.email = "alex@crackpot.org"
-  gem.authors = ["Alex Dean"]
+  gem.authors = ["Alex Dean", "Matthew Trost"]
+  gem.require_paths = ["lib", "lib/graphite_client"]
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
