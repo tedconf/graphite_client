@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.version = "0.4.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Alex Dean"]
+  s.authors = ["Alex Dean", "Matthew Trost"]
   s.date = "2012-12-14"
   s.description = "Original code by https://github.com/joakimk."
   s.email = "alex@crackpot.org"
@@ -34,7 +34,7 @@ Gem::Specification.new do |s|
   ]
   s.homepage = "http://github.com/tedconf/graphite_client"
   s.licenses = ["MIT"]
-  s.require_paths = ["lib"]
+  s.require_paths = ["lib", "lib/graphite_client"]
   s.rubygems_version = "1.8.24"
   s.summary = "Very simple ruby client for graphite."
 
