@@ -5,10 +5,10 @@
 
 Gem::Specification.new do |s|
   s.name = "graphite_client"
-  s.version = "0.3.0"
+  s.version = "0.4.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Alex Dean"]
+  s.authors = ["Alex Dean", "Matthew Trost"]
   s.date = "2012-11-10"
   s.description = "Original code by https://github.com/joakimk."
   s.email = "alex@crackpot.org"
@@ -27,12 +27,13 @@ Gem::Specification.new do |s|
     "VERSION",
     "graphite_client.gemspec",
     "lib/graphite_client.rb",
+    "lib/graphite_client/event_reporter.rb",
     "spec/graphite_client_spec.rb",
     "spec/spec_helper.rb"
   ]
   s.homepage = "http://github.com/tedconf/graphite_client"
   s.licenses = ["MIT"]
-  s.require_paths = ["lib"]
+  s.require_paths = ["lib", "lib/graphite_client"]
   s.rubygems_version = "1.8.24"
   s.summary = "Very simple ruby client for graphite."
 
