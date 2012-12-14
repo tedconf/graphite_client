@@ -27,3 +27,5 @@ class GraphiteClient
     @socket = nil
   end
 end
+
+require 'graphite_client/event_reporter'
