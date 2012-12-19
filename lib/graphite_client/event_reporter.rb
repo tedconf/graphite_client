@@ -20,6 +20,8 @@ class GraphiteClient
 
     def report(event={})
       event[:tags] = Array(event[:tags]).join(',')
+      # data should be a string.
+      event[:data] = event[:data].is_a?(String) ? event[:data] : event[:data].to_json
       @req.body = event.to_json
       @http.request(@req)
     end

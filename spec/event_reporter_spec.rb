@@ -30,6 +30,27 @@ describe "GraphiteClient::EventReporter" do
     event_reporter.report(@event)
   end
 
+  it "should encode a non-string data element as json" do
+    Net::HTTP.should_receive(:new).with(@uri.host, @uri.port).and_return(http = mock())
+    Net::HTTP::Post.should_receive(:new).with(@uri.request_uri).and_return(req = mock())
+
+    event = {
+      :what => 'test',
+      :tags => 'test',
+      :data => {:some => 'a', :useful => 'b', :data => 'c'}
+    }
+
+    expected = {}
+    expected[:what] = event[:what]
+    expected[:tags] = event[:tags]
+    expected[:data] = event[:data].to_json
+
+    req.should_receive(:body=).with(expected.to_json)
+    http.should_receive(:request).with(req)
+    event_reporter = GraphiteClient::EventReporter.new(@url)
+    event_reporter.report(event)
+  end
+
   context "with basic auth" do
     it "should create an HTTP connection and POST to it, using basic auth" do
       Net::HTTP.should_receive(:new).with(@uri.host, @uri.port).and_return(http = mock())
