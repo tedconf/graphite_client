@@ -20,3 +20,14 @@ Very simple ruby client for reporting metrics to [Graphite](http://graphite.wiki
     graphite_event.report(:what => 'an event', :tags => ['some', 'tags'], :data => 'some info')
 
 * When reporting an event, you can (optionally) pass `:basic_auth => { :username => 'un', :password => 'pw' }` to the `GraphiteClient::EventReporter` constructor.
+
+
+  <!--- project_def -->
+  Very simple ruby client for reporting metrics to Graphite.
+
+    - Intended subjects: howtos, high-level documentation & guides, etc.
+    - Intended audience: TED Tech staff.
+    - Vertical: Operations
+    - Related Links:
+      - https://github.com/tedconf/graphite_client
+  <!--- /project_def -->
