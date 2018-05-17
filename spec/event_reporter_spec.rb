@@ -12,8 +12,8 @@ describe "GraphiteClient::EventReporter" do
   end
 
   it "should create an HTTP connection and POST to it" do
-    Net::HTTP.should_receive(:new).with(@uri.host, @uri.port).and_return(http = mock())
-    Net::HTTP::Post.should_receive(:new).with(@uri.request_uri).and_return(req = mock())
+    Net::HTTP.should_receive(:new).with(@uri.host, @uri.port).and_return(http = double())
+    Net::HTTP::Post.should_receive(:new).with(@uri.request_uri).and_return(req = double())
     req.should_receive(:body=).with(@event.to_json)
     http.should_receive(:request).with(req)
     event_reporter = GraphiteClient::EventReporter.new(@url)
@@ -21,8 +21,8 @@ describe "GraphiteClient::EventReporter" do
   end
 
   it "should reuse the same HTTP connection" do
-    Net::HTTP.should_receive(:new).with(@uri.host, @uri.port).and_return(http = mock())
-    Net::HTTP::Post.should_receive(:new).with(@uri.request_uri).and_return(req = mock())
+    Net::HTTP.should_receive(:new).with(@uri.host, @uri.port).and_return(http = double())
+    Net::HTTP::Post.should_receive(:new).with(@uri.request_uri).and_return(req = double())
     req.should_receive(:body=).twice.with(@event.to_json)
     http.should_receive(:request).twice.with(req)
     event_reporter = GraphiteClient::EventReporter.new(@url)
@@ -31,8 +31,8 @@ describe "GraphiteClient::EventReporter" do
   end
 
   it "should encode a non-string data element as json" do
-    Net::HTTP.should_receive(:new).with(@uri.host, @uri.port).and_return(http = mock())
-    Net::HTTP::Post.should_receive(:new).with(@uri.request_uri).and_return(req = mock())
+    Net::HTTP.should_receive(:new).with(@uri.host, @uri.port).and_return(http = double())
+    Net::HTTP::Post.should_receive(:new).with(@uri.request_uri).and_return(req = double())
 
     event = {
       :what => 'test',
