@@ -11,3 +11,6 @@ group :development do
   gem "bundler", "~> 1.16.2"
   gem "jeweler", "~> 2.3.9"
 end
+
+# For jenkins
+gem 'rubocop'
