@@ -15,3 +15,4 @@ end
 # For jenkins
 gem 'rubocop'
 gem 'rubocop-checkstyle_formatter'
+gem 'bundle-audit'
