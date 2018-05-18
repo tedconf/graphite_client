@@ -42,7 +42,10 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_development_dependency(%q<rspec>, ["~> 3.7.0"])
+      # https://stackoverflow.com/a/35893625
+      s.add_development_dependency(%q<rake>, ["< 11.0"])
+      #
+      s.add_development_dependency(%q<rspec>, ["~> 2.99.0"])
       s.add_development_dependency(%q<rdoc>, ["~> 6.0.4"])
       s.add_development_dependency(%q<bundler>, ["~> 1.16.1"])
       s.add_development_dependency(%q<jeweler>, ["~> 2.3.9"])

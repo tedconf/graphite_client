@@ -28,18 +28,16 @@ describe "GraphiteClient" do
     graphite.report("hello.world", 10, time)
   end
 
-  # Test fails right now
-  # #<Double (anonymous)> received unexpected message :stub! with ({:closed?=>true})
-  #it "should not reuse a socket that is closed" do
-  #  time = Time.now
-  #  TCPSocket.should_receive(:new).twice.with("host", 2003).and_return(socket = double(:closed? => false))
-  #  socket.should_receive(:write)
-  #  socket.should_receive(:write)
-  #  graphite = GraphiteClient.new("host")
-  #  graphite.report("hello.world", 10.5, time)
-  #  socket.stub!(:closed? => true)
-  #  graphite.report("hello.world", 10, time)
-  #end
+  it "should not reuse a socket that is closed" do
+    time = Time.now
+    TCPSocket.should_receive(:new).twice.with("host", 2003).and_return(socket = double(:closed? => false))
+    socket.should_receive(:write)
+    socket.should_receive(:write)
+    graphite = GraphiteClient.new("host")
+    graphite.report("hello.world", 10.5, time)
+    socket.stub(:closed? => true)
+    graphite.report("hello.world", 10, time)
+  end
 
   context "error handling" do
 
