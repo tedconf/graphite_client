@@ -73,6 +73,8 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
+    rubocop-checkstyle_formatter (0.4.0)
+      rubocop (>= 0.35.1)
     ruby-progressbar (1.9.0)
     semver2 (3.4.2)
     thread_safe (0.3.6)
@@ -82,11 +84,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 1.16.2)
+  bundler (~> 1.16.1)
   jeweler (~> 2.3.9)
   rdoc (~> 6.0.4)
   rspec (~> 3.7.0)
   rubocop
+  rubocop-checkstyle_formatter
 
 BUNDLED WITH
    1.16.2
