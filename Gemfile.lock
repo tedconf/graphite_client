@@ -54,7 +54,7 @@ GEM
       ast (~> 2.4.0)
     powerpack (0.1.1)
     psych (3.0.2)
-    rack (2.0.8)
+    rack (2.2.2)
     rainbow (3.0.0)
     rake (10.5.0)
     rdoc (6.0.4)
