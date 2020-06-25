@@ -5,7 +5,8 @@ describe "GraphiteClient" do
 
   it "should create a socket and report data to it" do
     time = Time.now
-    expect(TCPSocket).to receive(:new).with("host", 2003).and_return(socket = double(:closed? => false))
+    expect(TCPSocket).to receive(:new).with("host", 2003)
+                           .and_return(socket = instance_double('TCPSocket', :closed? => false))
     expect(socket).to receive(:write).with("hello.world 10.5 #{time.to_i}\n")
     graphite = GraphiteClient.new("host")
     graphite.report("hello.world", 10.5, time)
@@ -13,7 +14,8 @@ describe "GraphiteClient" do
 
   it "should accept an alternate port number" do
     time = Time.now
-    expect(TCPSocket).to receive(:new).with("host", 2023).and_return(socket = double(:closed? => false))
+    expect(TCPSocket).to receive(:new).with("host", 2023)
+                           .and_return(socket = instance_double('TCPSocket', :closed? => false))
     expect(socket).to receive(:write).with("hello.world 10.5 #{time.to_i}\n")
     graphite = GraphiteClient.new("host:2023")
     graphite.report("hello.world", 10.5, time)
@@ -23,7 +25,7 @@ describe "GraphiteClient" do
     time = Time.now
     expect(TCPSocket).to receive(:new).once
                            .with("host", 2003)
-                           .and_return(socket = double(:closed? => false))
+                           .and_return(socket = instance_double('TCPSocket', :closed? => false))
     expect(socket).to receive(:write).twice
     graphite = GraphiteClient.new("host")
     graphite.report("hello.world", 10.5, time)
@@ -34,7 +36,7 @@ describe "GraphiteClient" do
     time = Time.now
     expect(TCPSocket).to receive(:new).twice
                            .with("host", 2003)
-                           .and_return(socket = double(:closed? => false))
+                           .and_return(socket = instance_double('TCPSocket', :closed? => false))
     expect(socket).to receive(:write)
     expect(socket).to receive(:write)
     graphite = GraphiteClient.new("host")
@@ -49,7 +51,7 @@ describe "GraphiteClient" do
       time = Time.now
       expect(TCPSocket).to receive(:new).twice
                              .with("host", 2003)
-                             .and_return(socket = double(:closed? => false))
+                             .and_return(socket = instance_double('TCPSocket', :closed? => false))
       expect(socket).to receive(:write).and_raise(Errno::EPIPE)
       expect(socket).to receive(:write)
       graphite = GraphiteClient.new("host")
@@ -79,7 +81,7 @@ describe "GraphiteClient" do
     time = Time.now
     expect(TCPSocket).to receive(:new).twice
                            .with("host", 2003)
-                           .and_return(socket = double(:closed? => false))
+                           .and_return(socket = instance_double('TCPSocket', :closed? => false))
     expect(socket).to receive(:write)
     expect(socket).to receive(:write)
     graphite = GraphiteClient.new("host")
@@ -90,4 +92,3 @@ describe "GraphiteClient" do
   end
 
 end
-

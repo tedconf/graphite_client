@@ -12,8 +12,10 @@ describe "GraphiteClient::EventReporter" do
   end
 
   it "should create an HTTP connection and POST to it" do
-    expect(Net::HTTP).to receive(:new).with(@uri.host, @uri.port).and_return(http = double())
-    expect(Net::HTTP::Post).to receive(:new).with(@uri.request_uri).and_return(req = double())
+    expect(Net::HTTP).to receive(:new).with(@uri.host, @uri.port)
+                           .and_return(http = instance_double('Net::HTTP'))
+    expect(Net::HTTP::Post).to receive(:new).with(@uri.request_uri)
+                                 .and_return(req = instance_double('Net::HTTP::Post'))
     expect(req).to receive(:body=).with(@event.to_json)
     expect(http).to receive(:request).with(req)
     event_reporter = GraphiteClient::EventReporter.new(@url)
@@ -21,8 +23,10 @@ describe "GraphiteClient::EventReporter" do
   end
 
   it "should reuse the same HTTP connection" do
-    expect(Net::HTTP).to receive(:new).with(@uri.host, @uri.port).and_return(http = double())
-    expect(Net::HTTP::Post).to receive(:new).with(@uri.request_uri).and_return(req = double())
+    expect(Net::HTTP).to receive(:new).with(@uri.host, @uri.port)
+                           .and_return(http = instance_double('Net::HTTP'))
+    expect(Net::HTTP::Post).to receive(:new).with(@uri.request_uri)
+                                 .and_return(req = instance_double('Net::HTTP::Post'))
     expect(req).to receive(:body=).twice.with(@event.to_json)
     expect(http).to receive(:request).twice.with(req)
     event_reporter = GraphiteClient::EventReporter.new(@url)
@@ -31,8 +35,10 @@ describe "GraphiteClient::EventReporter" do
   end
 
   it "should encode a non-string data element as json" do
-    expect(Net::HTTP).to receive(:new).with(@uri.host, @uri.port).and_return(http = double())
-    expect(Net::HTTP::Post).to receive(:new).with(@uri.request_uri).and_return(req = double())
+    expect(Net::HTTP).to receive(:new).with(@uri.host, @uri.port)
+                           .and_return(http = instance_double('Net::HTTP'))
+    expect(Net::HTTP::Post).to receive(:new).with(@uri.request_uri)
+                                 .and_return(req = instance_double('Net::HTTP::Post'))
 
     event = {
       :what => 'test',
@@ -53,8 +59,10 @@ describe "GraphiteClient::EventReporter" do
 
   context "with basic auth" do
     it "should create an HTTP connection and POST to it, using basic auth" do
-      expect(Net::HTTP).to receive(:new).with(@uri.host, @uri.port).and_return(http = double())
-      expect(Net::HTTP::Post).to receive(:new).with(@uri.request_uri).and_return(req = double())
+      expect(Net::HTTP).to receive(:new).with(@uri.host, @uri.port)
+                             .and_return(http = instance_double('Net::HTTP'))
+      expect(Net::HTTP::Post).to receive(:new).with(@uri.request_uri)
+                                   .and_return(req = instance_double('Net::HTTP::Post'))
       expect(req).to receive(:basic_auth).with(@basic_auth[:username], @basic_auth[:password])
       expect(req).to receive(:body=).with(@event.to_json)
       expect(http).to receive(:request).with(req)
@@ -65,8 +73,10 @@ describe "GraphiteClient::EventReporter" do
 
   context "over SSL" do
     it "should create an HTTPS connection and POST to it" do
-      expect(Net::HTTP).to receive(:new).with(@https_uri.host, @https_uri.port).and_return(http = double())
-      expect(Net::HTTP::Post).to receive(:new).with(@https_uri.request_uri).and_return(req = double())
+      expect(Net::HTTP).to receive(:new).with(@https_uri.host, @https_uri.port)
+                             .and_return(http = instance_double('Net::HTTP'))
+      expect(Net::HTTP::Post).to receive(:new).with(@https_uri.request_uri)
+                                   .and_return(req = instance_double('Net::HTTP::Post'))
       expect(http).to receive(:use_ssl=).with(true)
       expect(req).to receive(:body=).with(@event.to_json)
       expect(http).to receive(:request).with(req)
@@ -75,8 +85,10 @@ describe "GraphiteClient::EventReporter" do
     end
 
     it "should create an HTTPS connection and POST to it, using basic auth" do
-      expect(Net::HTTP).to receive(:new).with(@https_uri.host, @https_uri.port).and_return(http = double())
-      expect(Net::HTTP::Post).to receive(:new).with(@https_uri.request_uri).and_return(req = double())
+      expect(Net::HTTP).to receive(:new).with(@https_uri.host, @https_uri.port)
+                             .and_return(http = instance_double('Net::HTTP'))
+      expect(Net::HTTP::Post).to receive(:new).with(@https_uri.request_uri)
+                                   .and_return(req = instance_double('Net::HTTP::Post'))
       expect(http).to receive(:use_ssl=).with(true)
       expect(req).to receive(:basic_auth).with(@basic_auth[:username], @basic_auth[:password])
       expect(req).to receive(:body=).with(@event.to_json)
