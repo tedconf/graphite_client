@@ -9,7 +9,7 @@ group :development do
   # https://stackoverflow.com/a/35893625
   gem 'rake', '< 13.0'
   # Cannot use 3.x, due to failing socket.stub test in graphite_client_spec.rb
-  gem "rspec", "~> 2.99.0"
+  gem "rspec", "~> 3.9.0"
   gem "rdoc", "~> 6.0.4"
   gem "bundler", "~> 1.16.1"
   gem "jeweler", "~> 2.3.9"
