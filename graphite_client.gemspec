@@ -43,7 +43,7 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       # https://stackoverflow.com/a/35893625
-      s.add_development_dependency(%q<rake>, ["< 11.0"])
+      s.add_development_dependency(%q<rake>, "< 14.0")
       #
       s.add_development_dependency(%q<rspec>, ["~> 2.99.0"])
       s.add_development_dependency(%q<rdoc>, ["~> 6.0.4"])
