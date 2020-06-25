@@ -1,1 +1,6 @@
-inherit_from: .rubocop_todo.yml
+AllCops:
+  TargetRubyVersion: 2.5
+
+inherit_from:
+  - https://raw.githubusercontent.com/tedconf/code-style-guides/rubocop_latest/linters/rubocop/rubocop.yml
+  - .rubocop_todo.yml

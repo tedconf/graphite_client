@@ -72,7 +72,7 @@ Layout/SpaceInsideHashLiteralBraces:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: final_newline, final_blank_line
-Layout/TrailingBlankLines:
+Layout/TrailingEmptyLines:
   Exclude:
     - 'graphite_client.gemspec'
     - 'spec/graphite_client_spec.rb'
@@ -225,7 +225,7 @@ Style/StringLiterals:
 
 # Offense count: 14
 # Cop supports --auto-correct.
-Style/UnneededPercentQ:
+Style/RedundantPercentQ:
   Exclude:
     - 'Rakefile'
     - 'graphite_client.gemspec'
@@ -233,5 +233,5 @@ Style/UnneededPercentQ:
 # Offense count: 26
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
 # URISchemes: http, https
-Metrics/LineLength:
+Layout/LineLength:
   Max: 108

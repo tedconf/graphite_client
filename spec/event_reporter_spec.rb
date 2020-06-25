@@ -12,27 +12,27 @@ describe "GraphiteClient::EventReporter" do
   end
 
   it "should create an HTTP connection and POST to it" do
-    Net::HTTP.should_receive(:new).with(@uri.host, @uri.port).and_return(http = double())
-    Net::HTTP::Post.should_receive(:new).with(@uri.request_uri).and_return(req = double())
-    req.should_receive(:body=).with(@event.to_json)
-    http.should_receive(:request).with(req)
+    expect(Net::HTTP).to receive(:new).with(@uri.host, @uri.port).and_return(http = double())
+    expect(Net::HTTP::Post).to receive(:new).with(@uri.request_uri).and_return(req = double())
+    expect(req).to receive(:body=).with(@event.to_json)
+    expect(http).to receive(:request).with(req)
     event_reporter = GraphiteClient::EventReporter.new(@url)
     event_reporter.report(@event)
   end
 
   it "should reuse the same HTTP connection" do
-    Net::HTTP.should_receive(:new).with(@uri.host, @uri.port).and_return(http = double())
-    Net::HTTP::Post.should_receive(:new).with(@uri.request_uri).and_return(req = double())
-    req.should_receive(:body=).twice.with(@event.to_json)
-    http.should_receive(:request).twice.with(req)
+    expect(Net::HTTP).to receive(:new).with(@uri.host, @uri.port).and_return(http = double())
+    expect(Net::HTTP::Post).to receive(:new).with(@uri.request_uri).and_return(req = double())
+    expect(req).to receive(:body=).twice.with(@event.to_json)
+    expect(http).to receive(:request).twice.with(req)
     event_reporter = GraphiteClient::EventReporter.new(@url)
     event_reporter.report(@event)
     event_reporter.report(@event)
   end
 
   it "should encode a non-string data element as json" do
-    Net::HTTP.should_receive(:new).with(@uri.host, @uri.port).and_return(http = double())
-    Net::HTTP::Post.should_receive(:new).with(@uri.request_uri).and_return(req = double())
+    expect(Net::HTTP).to receive(:new).with(@uri.host, @uri.port).and_return(http = double())
+    expect(Net::HTTP::Post).to receive(:new).with(@uri.request_uri).and_return(req = double())
 
     event = {
       :what => 'test',
@@ -45,19 +45,19 @@ describe "GraphiteClient::EventReporter" do
     expected[:tags] = event[:tags]
     expected[:data] = event[:data].to_json
 
-    req.should_receive(:body=).with(expected.to_json)
-    http.should_receive(:request).with(req)
+    expect(req).to receive(:body=).with(expected.to_json)
+    expect(http).to receive(:request).with(req)
     event_reporter = GraphiteClient::EventReporter.new(@url)
     event_reporter.report(event)
   end
 
   context "with basic auth" do
     it "should create an HTTP connection and POST to it, using basic auth" do
-      Net::HTTP.should_receive(:new).with(@uri.host, @uri.port).and_return(http = double())
-      Net::HTTP::Post.should_receive(:new).with(@uri.request_uri).and_return(req = double())
-      req.should_receive(:basic_auth).with(@basic_auth[:username], @basic_auth[:password])
-      req.should_receive(:body=).with(@event.to_json)
-      http.should_receive(:request).with(req)
+      expect(Net::HTTP).to receive(:new).with(@uri.host, @uri.port).and_return(http = double())
+      expect(Net::HTTP::Post).to receive(:new).with(@uri.request_uri).and_return(req = double())
+      expect(req).to receive(:basic_auth).with(@basic_auth[:username], @basic_auth[:password])
+      expect(req).to receive(:body=).with(@event.to_json)
+      expect(http).to receive(:request).with(req)
       event_reporter = GraphiteClient::EventReporter.new(@url, basic_auth: @basic_auth)
       event_reporter.report(@event)
     end
@@ -65,22 +65,22 @@ describe "GraphiteClient::EventReporter" do
 
   context "over SSL" do
     it "should create an HTTPS connection and POST to it" do
-      Net::HTTP.should_receive(:new).with(@https_uri.host, @https_uri.port).and_return(http = double())
-      Net::HTTP::Post.should_receive(:new).with(@https_uri.request_uri).and_return(req = double())
-      http.should_receive(:use_ssl=).with(true)
-      req.should_receive(:body=).with(@event.to_json)
-      http.should_receive(:request).with(req)
+      expect(Net::HTTP).to receive(:new).with(@https_uri.host, @https_uri.port).and_return(http = double())
+      expect(Net::HTTP::Post).to receive(:new).with(@https_uri.request_uri).and_return(req = double())
+      expect(http).to receive(:use_ssl=).with(true)
+      expect(req).to receive(:body=).with(@event.to_json)
+      expect(http).to receive(:request).with(req)
       event_reporter = GraphiteClient::EventReporter.new(@https_url)
       event_reporter.report(@event)
     end
 
     it "should create an HTTPS connection and POST to it, using basic auth" do
-      Net::HTTP.should_receive(:new).with(@https_uri.host, @https_uri.port).and_return(http = double())
-      Net::HTTP::Post.should_receive(:new).with(@https_uri.request_uri).and_return(req = double())
-      http.should_receive(:use_ssl=).with(true)
-      req.should_receive(:basic_auth).with(@basic_auth[:username], @basic_auth[:password])
-      req.should_receive(:body=).with(@event.to_json)
-      http.should_receive(:request).with(req)
+      expect(Net::HTTP).to receive(:new).with(@https_uri.host, @https_uri.port).and_return(http = double())
+      expect(Net::HTTP::Post).to receive(:new).with(@https_uri.request_uri).and_return(req = double())
+      expect(http).to receive(:use_ssl=).with(true)
+      expect(req).to receive(:basic_auth).with(@basic_auth[:username], @basic_auth[:password])
+      expect(req).to receive(:body=).with(@event.to_json)
+      expect(http).to receive(:request).with(req)
       event_reporter = GraphiteClient::EventReporter.new(@https_url, basic_auth: @basic_auth)
       event_reporter.report(@event)
     end

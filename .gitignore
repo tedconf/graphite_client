@@ -50,3 +50,6 @@ pkg
 
 # For rubinius:
 #*.rbc
+
+# rubocop config
+.rubocop-https*
