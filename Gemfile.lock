@@ -56,7 +56,7 @@ GEM
     rack (2.2.3)
     rainbow (3.0.0)
     rake (12.3.3)
-    rdoc (6.0.4)
+    rdoc (6.3.0)
     rexml (3.2.4)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
@@ -94,7 +94,7 @@ DEPENDENCIES
   bundler (~> 1.16.1)
   jeweler (~> 2.3.9)
   rake (< 13.0)
-  rdoc (~> 6.0.4)
+  rdoc (~> 6.3.0)
   rspec (< 4.0)
   rubocop
   rubocop-checkstyle_formatter

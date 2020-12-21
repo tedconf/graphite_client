@@ -8,7 +8,7 @@ source "https://rubygems.org"
 group :development do
   gem 'rake', '< 13.0'
   gem "rspec", "< 4.0"
-  gem "rdoc", "~> 6.0.4"
+  gem "rdoc", "~> 6.3.0"
   gem "bundler", "~> 1.16.1"
   gem "jeweler", "~> 2.3.9"
 end
