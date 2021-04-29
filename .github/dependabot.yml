@@ -1,0 +1,29 @@
+version: 2
+registries:
+  rubygems-server-rubygems-ted-com:
+    type: rubygems-server
+    url: https://rubygems.ted.com
+    token: "${{secrets.RUBYGEMS_SERVER_RUBYGEMS_TED_COM_TOKEN}}"
+
+updates:
+- package-ecosystem: bundler
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "10:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: rubocop
+    versions:
+    - 1.10.0
+    - 1.11.0
+    - 1.12.0
+    - 1.12.1
+    - 1.9.0
+    - 1.9.1
+  - dependency-name: nokogiri
+    versions:
+    - 1.11.1
+    - 1.11.2
+  registries:
+  - rubygems-server-rubygems-ted-com
