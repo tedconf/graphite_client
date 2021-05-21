@@ -37,12 +37,13 @@ GEM
       semver2
     jwt (1.5.6)
     mime-types (2.99.3)
-    mini_portile2 (2.4.0)
+    mini_portile2 (2.5.1)
     multi_json (1.13.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
-    nokogiri (1.10.8)
-      mini_portile2 (~> 2.4.0)
+    nokogiri (1.11.5)
+      mini_portile2 (~> 2.5.0)
+      racc (~> 1.4)
     oauth2 (1.4.0)
       faraday (>= 0.8, < 0.13)
       jwt (~> 1.0)
@@ -53,11 +54,12 @@ GEM
     parser (2.7.1.2)
       ast (~> 2.4.0)
     psych (3.0.2)
+    racc (1.5.2)
     rack (2.2.3)
     rainbow (3.0.0)
     rake (12.3.3)
-    rdoc (6.0.4)
-    rexml (3.2.4)
+    rdoc (6.3.1)
+    rexml (3.2.5)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
       rspec-expectations (~> 3.9.0)
@@ -91,13 +93,13 @@ PLATFORMS
 
 DEPENDENCIES
   bundle-audit
-  bundler (~> 1.16.1)
+  bundler (~> 1.17.3)
   jeweler (~> 2.3.9)
   rake (< 13.0)
-  rdoc (~> 6.0.4)
+  rdoc (~> 6.3.1)
   rspec (< 4.0)
   rubocop
   rubocop-checkstyle_formatter
 
 BUNDLED WITH
-   1.16.6
+   1.17.3
