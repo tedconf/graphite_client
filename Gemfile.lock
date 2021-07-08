@@ -57,7 +57,7 @@ GEM
     racc (1.5.2)
     rack (2.2.3)
     rainbow (3.0.0)
-    rake (12.3.3)
+    rake (13.0.5)
     rdoc (6.3.1)
     rexml (3.2.5)
     rspec (3.9.0)
@@ -95,7 +95,7 @@ DEPENDENCIES
   bundle-audit
   bundler (~> 1.17.3)
   jeweler (~> 2.3.9)
-  rake (< 13.0)
+  rake (< 14.0)
   rdoc (~> 6.3.1)
   rspec (< 4.0)
   rubocop
