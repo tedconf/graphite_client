@@ -4,12 +4,16 @@
 
 The following apps use this Gem
 
-* inside
 * page_builder
 * ted_ed_upload
 * videometrics_mysql
 * identity.ted.com
 * dam_upload
+
+# ARG!!!
+This gem is really old and is using Jewler to package it self. This method fell
+out of favor in the community. This app really should use the built in bundler
+ways to package a gem. As such this gem isn't on the TED Private gemserver .
 
 
 ## About ##
