@@ -1,5 +1,17 @@
 # graphite_client #
 
+# How is this used at TED
+
+The following apps use this Gem
+
+* inside
+* page_builder
+* ted_ed_upload
+* videometrics_mysql
+* identity.ted.com
+* dam_upload
+
+
 ## About ##
 
 Very simple ruby client for reporting metrics to [Graphite](http://graphite.wikidot.com/).
