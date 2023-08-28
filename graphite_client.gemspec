@@ -38,6 +38,13 @@ Gem::Specification.new do |s|
   s.rubygems_version = "1.8.24"
   s.summary = "Very simple ruby client for graphite."
 
+  if spec.respond_to?(:metadata)
+    spec.metadata['allowed_push_host'] = "https://rubygems.ted.com/private"
+  else
+    raise "RubyGems 2.0 or newer is required to protect against " \
+      "public gem pushes."
+  end
+
   if s.respond_to? :specification_version then
     s.specification_version = 3
 
